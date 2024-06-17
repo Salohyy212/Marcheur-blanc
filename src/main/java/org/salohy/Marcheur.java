@@ -1,12 +1,21 @@
 package org.salohy;
 
-import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-@Getter
-public record Marcheur(String nom) {
+
+public record Marcheur(String nom, Carte carte) {
+    @Override
+    public String nom() {
+        return nom;
+    }
+
+    @Override
+    public Carte carte() {
+        return carte;
+    }
 
     public Marche marcher(Lieu lieuDepart, Lieu lieuArrivee, Carte carte) {
         List<Lieu> trajet = new ArrayList<>();
@@ -20,8 +29,8 @@ public record Marcheur(String nom) {
             if (lieuxAdjacents.isEmpty()) {
                 break;
             }
-            int indexAdjacent = random.nextInt(lieuxAdjacents.size());
-            positionActuelle = lieuxAdjacents.get(indexAdjacent);
+            int indexLieuAdjacent = random.nextInt(lieuxAdjacents.size());
+            positionActuelle = lieuxAdjacents.get(indexLieuAdjacent);
 
             trajet.add(positionActuelle);
         }
