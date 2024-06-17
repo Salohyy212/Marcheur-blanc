@@ -1,2 +1,12 @@
-package org.salohy;public class Marche {
+package org.salohy;
+
+import lombok.Getter;
+
+
+import java.util.List;
+
+@Getter
+public record Marche(List<Lieu> lieuxVisites) {
+
+
 }
