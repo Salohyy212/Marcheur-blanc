@@ -6,6 +6,7 @@ import org.salohy.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 class MarcheurTest {
@@ -33,14 +34,13 @@ class MarcheurTest {
         var rue8 = new Rue(balancoire, esti, null);
         var rue9 = new Rue(boulevardDeLEurope, esti, null);
 
-        // creation de carte antananarivo
         var carteTana = new Carte(Set.of(rue1, rue2, rue3, rue4, rue5, rue6, rue7, rue8, rue9).toString());
 
         // creation d'un marcheur
-        var bjarni = new Marcheur("Bjarni", carteTana);
+        var bjarni = new Marcheur("Bjarni");
 
         // Bjarni marche de Hei vers Esti
-        Marche trajet = bjarni.marcher(hei, esti, carteTana);
+        Marche trajet = bjarni.marcher(hei, esti);
 
 
         var lieuxVisites = trajet.lieuxVisites();
@@ -48,9 +48,10 @@ class MarcheurTest {
         var lieuDArrivee = lieuxVisites.get(lieuxVisites.size() - 1);
         var longueurTrajet = lieuxVisites.size();
 
+        int deplacementMinimale = 3;
         assertEquals(hei, lieuDeDepart, "La marche commence à HEI");
         assertEquals(esti, lieuDArrivee, "La marche se termine à ESTI");
-        assertTrue(longueurTrajet >= 3, "Le trajet contient au moins 3 lieux, de HEI à ESTI");
+        assertTrue(longueurTrajet >= deplacementMinimale, "Le trajet contient au moins 3 lieux, de HEI à ESTI");
     }
 }
 

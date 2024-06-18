@@ -9,6 +9,12 @@ public class Carte {
     private final Set<Lieu> lieux;
     private final Set<Rue> rues;
 
+    public Carte(String nom, Set<Lieu> lieux, Set<Rue> rues) {
+        this.nom = nom;
+        this.lieux = lieux;
+        this.rues = rues;
+    }
+
     public String getNom() {
         return nom;
     }

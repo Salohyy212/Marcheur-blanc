@@ -1,8 +1,5 @@
 package org.salohy;
 
-
-
-
 public record Rue(Lieu lieu1, Lieu lieu2, String nom) {
     public Rue(Lieu lieu1, Lieu lieu2, String nom) {
         this.lieu1 = lieu1;

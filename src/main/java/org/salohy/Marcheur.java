@@ -6,19 +6,14 @@ import java.util.List;
 import java.util.Random;
 
 
-public record Marcheur(String nom, Carte carte) {
+public record Marcheur(String nom) {
     @Override
     public String nom() {
         return nom;
     }
 
-    @Override
-    public Carte carte() {
-        return carte;
-    }
-
-    public Marche marcher(Lieu lieuDepart, Lieu lieuArrivee, Carte carte) {
-        List<Lieu> trajet = new ArrayList<>();
+    public Marche marcher(Lieu lieuDepart, Lieu lieuArrivee) throws AucunLieuAdjacent {
+        ArrayList<Lieu> trajet = new ArrayList<>();
         Random random = new Random();
 
         trajet.add(lieuDepart);
