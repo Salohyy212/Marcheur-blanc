@@ -11,8 +11,8 @@ import java.util.Set;
 class MarcheurTest {
 
     @Test
-    void bjarni_marche_de_HEI_vers_ESTI() {
-        // Create locations
+    void bjarni_marche_aleatoire_de_HEI_vers_ESTI() {
+        // creation de lieu
         var marais = new Lieu("Marais");
         var sekolintsika = new Lieu("Sekolintsika");
         var hei = new Lieu("HEI");
@@ -22,7 +22,7 @@ class MarcheurTest {
         var nexta = new Lieu("Nexta");
         var esti = new Lieu("ESTI");
 
-        // Create streets
+        // creation de rue
         var rue1 = new Rue(marais, sekolintsika,null);
         var rue2 = new Rue(sekolintsika, hei, null);
         var rue3 = new Rue(hei, pullman ,"Rue Andriantsihoarana");
@@ -33,16 +33,16 @@ class MarcheurTest {
         var rue8 = new Rue(balancoire, esti, null);
         var rue9 = new Rue(boulevardDeLEurope, esti, null);
 
-        // Create the map of Antananarivo
+        // creation de carte antananarivo
         var carteTana = new Carte(Set.of(rue1, rue2, rue3, rue4, rue5, rue6, rue7, rue8, rue9).toString());
 
-        // Create the walker
+        // creation d'un marcheur
         var bjarni = new Marcheur("Bjarni", carteTana);
 
-        // Bjarni walks from HEI to ESTI
+        // Bjarni marche de Hei vers Esti
         Marche trajet = bjarni.marcher(hei, esti, carteTana);
 
-        // Validate the start and end of the journey
+
         var lieuxVisites = trajet.lieuxVisites();
         var lieuDeDepart = lieuxVisites.get(0);
         var lieuDArrivee = lieuxVisites.get(lieuxVisites.size() - 1);
