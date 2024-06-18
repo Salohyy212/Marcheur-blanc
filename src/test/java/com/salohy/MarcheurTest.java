@@ -42,16 +42,22 @@ class MarcheurTest {
         // Bjarni marche de Hei vers Esti
         Marche trajet = bjarni.marcher(hei, esti);
 
-
         var lieuxVisites = trajet.lieuxVisites();
-        var lieuDeDepart = lieuxVisites.get(0);
-        var lieuDArrivee = lieuxVisites.get(lieuxVisites.size() - 1);
+
         var longueurTrajet = lieuxVisites.size();
 
+        assertEquals(hei, lieuxVisites.getFirst(), "La marche commence à HEI");
+        assertEquals(esti, lieuxVisites.getLast(), "La marche se termine à ESTI");
+
         int deplacementMinimale = 3;
-        assertEquals(hei, lieuDeDepart, "La marche commence à HEI");
-        assertEquals(esti, lieuDArrivee, "La marche se termine à ESTI");
+
         assertTrue(longueurTrajet >= deplacementMinimale, "Le trajet contient au moins 3 lieux, de HEI à ESTI");
+
+        for(int i = 0; i < lieuxVisites.size() - 1; i++){
+            Lieu lieuActuel = lieuxVisites.get(i);
+            Lieu lieuSuivant = lieuxVisites.get(i + 1);
+            assertTrue(lieuActuel.getLieuxAdjacents().contains(lieuSuivant), "Chaque lieu visité doit-être adjacent au lieu précédent");
+        }
     }
 }
 
