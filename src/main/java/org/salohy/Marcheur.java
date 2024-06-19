@@ -12,24 +12,29 @@ public record Marcheur(String nom) {
         return nom;
     }
 
-    public Marche marcher(Lieu lieuDepart, Lieu lieuArrivee) throws AucuneRue {
-        ArrayList<Lieu> trajet = new ArrayList<>();
+    public Marche marcher(Lieu lieuDepart, Lieu lieuArrivee) {
+        ArrayList<Lieu> lieuxVisites = new ArrayList<>();
+
         Random random = new Random();
 
-        trajet.add(lieuDepart);
-        Lieu positionActuelle = lieuDepart;
+        lieuxVisites.add(lieuDepart);
+        Lieu lieuActuel = lieuDepart;
 
-        while (!positionActuelle.equals(lieuArrivee)) {
-            List<Lieu> lieuxAdjacents = positionActuelle.getLieuxAdjacents();
-            if (lieuxAdjacents.isEmpty()) {
-                break;
+        while (!lieuxVisites.contains(lieuArrivee)) {
+            List<Rue> ruesActuelles = lieuActuel.getRues();
+
+            if (ruesActuelles.isEmpty()) {
+                throw new AucuneRue();
             }
-            int indexLieuAdjacent = random.nextInt(lieuxAdjacents.size());
-            positionActuelle = lieuxAdjacents.get(indexLieuAdjacent);
+            int indexAuHasard = random.nextInt( ruesActuelles.size());
 
-            trajet.add(positionActuelle);
+            Rue rueAuHasard = ruesActuelles.get(indexAuHasard);
+
+            lieuActuel = rueAuHasard.getLieuCorrespondant(lieuActuel);
+
+            lieuxVisites.add(lieuActuel);
         }
 
-        return new Marche(trajet);
+        return new Marche(lieuxVisites);
     }
 }
