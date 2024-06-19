@@ -30,7 +30,7 @@ public record Rue(Lieu lieu1, Lieu lieu2, String nom) {
         return nom;
     }
 
-    public Lieu getAutreLieu(Lieu lieu){
+    public Lieu getLieuCorrespondant(Lieu lieu){
         if(lieu.equals(lieu1)){
             return lieu2;
         }else if(lieu.equals(lieu2)){
