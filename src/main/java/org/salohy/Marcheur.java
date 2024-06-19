@@ -12,7 +12,7 @@ public record Marcheur(String nom) {
         return nom;
     }
 
-    public Marche marcher(Lieu lieuDepart, Lieu lieuArrivee) throws AucunLieuAdjacent {
+    public Marche marcher(Lieu lieuDepart, Lieu lieuArrivee) throws AucuneRue {
         ArrayList<Lieu> trajet = new ArrayList<>();
         Random random = new Random();
 
